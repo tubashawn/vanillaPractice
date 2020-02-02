@@ -1,23 +1,29 @@
-const question = document.getElementById("questionInput");
-const header = document.getElementById("header");
-const button = document.getElementById("button");
-const userNumber = document.getElementById("userNumber");
+const QUESTION = document.getElementById("questionInput");
+const HEADER = document.getElementById("header");
+const BUTTON = document.getElementById("button");
+const USERNUMBER = document.getElementById("userNumber");
 const USERNUMBERS = document.getElementById("userNumbers");
+const SORT = document.getElementById("sortButton");
+const ORDEREDNUMBERS = document.getElementById("orderedNumbers");
+const SECTION5INFO = document.getElementById("section5info");
+
+let userArray = [];
 
 
-button.addEventListener("click", numberLogger);
+BUTTON.addEventListener("click", numberLogger(userArray));
+SECTION5INFO.addEventListener("click", sorter(userArray));
 
 function logger() {
     console.log("Random number = " + randomizer());
 }
 
 
-function numberLogger() {
+function numberLogger(array) {
     let numberValue = document.getElementById("questionInput").value;
-    console.log("You entered " + numberValue);
-    userNumber.innerHTML = `You entered ${numberValue}`;
     
-    USERNUMBERS.innerHTML = randomNumbers(numberValue);
+    USERNUMBER.innerHTML = `You entered ${numberValue}`;
+    console.log(userArray);
+    USERNUMBERS.innerHTML = userArray;
 }
 
 function randomizer() {
@@ -30,5 +36,17 @@ function randomNumbers(number) {
         let temp = randomizer();
         numbers.push(temp);
     }
-    return numbers;
+    userArray = numbers;
+    console.log(userArray);
+}
+
+function sorter(array) {
+    console.log(`Inside the sorter function using ${array}`);
+    for (let i = 0 ; i < array.length; i++) {
+        if (array[i] > array[i+1]) {
+            let temp = array[i];
+            array[i] = array[i+1];
+            array[i+1] = temp;
+        }
+    }
 }
