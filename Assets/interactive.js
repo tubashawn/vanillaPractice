@@ -57,11 +57,11 @@ function sorter(array) {
         console.log(`${array[i]} and ${array[i+1]}`);
         for (let j = 0; j < array.length; j++) {
 
-            if (array[i] > array[i+1]) {
-                let temp = array[i];
+            if (array[j] > array[j+1]) {
+                let temp = array[j];
                 console.log(temp);
-                array[i] = array[i+1];
-                array[i+1] = temp;
+                array[j] = array[j+1];
+                array[j+1] = temp;
             }
         }
         
