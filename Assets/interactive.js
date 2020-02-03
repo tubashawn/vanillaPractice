@@ -34,6 +34,10 @@ function end() {
     endTime = new Date();
 }
 
+function elapsed() {
+    return endTime - startTime;
+}
+
 function randomizer() {
     return Math.floor(Math.random() * 100);
 }
@@ -60,7 +64,7 @@ function bubbleSorter(array) {
         }
     }
     end();
-    console.log(`${endTime-startTime} milliseconds passed`);
+    console.log(`${elapsed()} milliseconds passed`);
 }
 
 function numberLogger() {
