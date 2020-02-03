@@ -55,14 +55,16 @@ function randomNumbers(number) {
 function sorter(array) {
     for (let i = 0 ; i < array.length; i++) {
         console.log(`${array[i]} and ${array[i+1]}`);
-        
-        let temp;
-        if (array[i] > array[i+1]) {
-            console.log("in if statement");
-            temp = array[i];
-            console.log(temp);
-            array[i] = array[i+1];
-            array[i+1] = temp;
+        for (let j = 0; j < array.length; j++) {
+
+            if (array[i] > array[i+1]) {
+                let temp = array[i];
+                console.log(temp);
+                array[i] = array[i+1];
+                array[i+1] = temp;
+            }
         }
+        
     }
+    console.log(array);
 }
