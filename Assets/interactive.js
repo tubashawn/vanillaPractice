@@ -15,25 +15,27 @@ const ACTIONS = {
     logger : function() {
         console.log("Random number = " + randomizer());
     },
+
     start : function() {
         startTime = new Date();
     },
+
     end : function() {
         endTime = new Date();
-    }, 
+    },
+
     elapsed : function() {
         return endTime - startTime;
     },
+
     randomizer : function() {
         return Math.floor(Math.random() * 100);
     }
-}
+};
 
 const SORTS = {
     swap : function(array, x, y) {
-        var temp = array[x];
-        array[x] = array[y];
-        array[y] = temp;
+        [array[x], array[y]] = [array[y], array[x]];
     },
 
     bubbleSorter : function(array) {
@@ -68,7 +70,7 @@ const SORTS = {
         console.log(`${ACTIONS.elapsed()} milliseconds passed`);
         return array;
     }
-}
+};
 
 BUTTON.onclick =  function() {
     numberLogger(userArray);
