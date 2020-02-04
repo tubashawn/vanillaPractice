@@ -33,7 +33,7 @@ BUTTON.onclick =  function() {
 }
 
 SORTBUTTON.onclick =  function(){
-    ORDEREDNUMBERS.innerHTML = bubbleSorter(userArray);
+    ORDEREDNUMBERS.innerHTML = selectionSorter(userArray);
 };
 
 function randomNumbers(number) {
@@ -59,6 +59,29 @@ function bubbleSorter(array) {
     ACTIONS.end();
     console.log(`${ACTIONS.elapsed()} milliseconds passed`);
     return array;
+}
+
+function selectionSorter(array) {
+    let length = array.length;
+
+    for (let i = 0; i < length - 1; i++) {
+        var min = i;
+        for (let j = i + 1; j < length; j++) {
+            if (array[j] < array[min]) {
+                min = j;
+            } else {}
+        }
+        if (min !== i) {
+            swap(array, i, min);
+        } else {}
+    }
+    return array;
+}
+
+function swap(array, x, y) {
+    var temp = array[x];
+    array[x] = array[y];
+    array[y] = temp;
 }
 
 function numberLogger() {
