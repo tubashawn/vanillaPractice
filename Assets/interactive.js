@@ -28,15 +28,13 @@ const ACTIONS = {
     }
 }
 
-
-
-BUTTON.addEventListener("click", function() {
+BUTTON.onclick =  function() {
     numberLogger(userArray);
-});
+}
 
-SORTBUTTON.addEventListener("click", function(){
-    bubbleSorter(userArray);
-});
+SORTBUTTON.onclick =  function(){
+    ORDEREDNUMBERS.innerHTML = bubbleSorter(userArray);
+};
 
 function randomNumbers(number) {
     let numbers = [];
@@ -60,6 +58,7 @@ function bubbleSorter(array) {
     }
     ACTIONS.end();
     console.log(`${ACTIONS.elapsed()} milliseconds passed`);
+    return array;
 }
 
 function numberLogger() {
