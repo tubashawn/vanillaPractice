@@ -10,6 +10,23 @@ const SECTION5INFO = document.getElementById("section5info");
 let userArray = [];
 let startTime, endTime;
 
+const ACTIONS = {
+    logger : function() {
+        console.log("Random number = " + randomizer());
+    },
+    start : function() {
+        startTime = new Date();
+    },
+    end : function() {
+        endTime = new Date();
+    }, 
+    elapsed : function() {
+        return endTime - startTime;
+    },
+    randomizer : function() {
+        return Math.floor(Math.random() * 100);
+    }
+}
 
 
 
@@ -21,39 +38,17 @@ SORTBUTTON.addEventListener("click", function(){
     bubbleSorter(userArray);
 });
 
-
-function logger() {
-    console.log("Random number = " + randomizer());
-}
-
-function start() {
-    startTime = new Date();
-}
-
-function end() {
-    endTime = new Date();
-}
-
-function elapsed() {
-    return endTime - startTime;
-}
-
-function randomizer() {
-    return Math.floor(Math.random() * 100);
-}
-
 function randomNumbers(number) {
     let numbers = [];
     for (let i = 0; i < number; i++) {
-        let temp = randomizer();
+        let temp = ACTIONS.randomizer();
         numbers.push(temp);
     }
     userArray = numbers;
-    console.log(userArray);
 }
 
 function bubbleSorter(array) {
-    start();
+    ACTIONS.start();
     for (let i = 0 ; i < array.length; i++) {
         for (let j = 0; j < array.length; j++) {
             if (array[j] > array[j+1]) {
@@ -63,8 +58,8 @@ function bubbleSorter(array) {
             }
         }
     }
-    end();
-    console.log(`${elapsed()} milliseconds passed`);
+    ACTIONS.end();
+    console.log(`${ACTIONS.elapsed()} milliseconds passed`);
 }
 
 function numberLogger() {
