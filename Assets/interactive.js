@@ -3,6 +3,7 @@ const HEADER = document.getElementById("header");
 const BUTTON = document.getElementById("button");
 const BUBBLESORTBUTTON = document.getElementById("bubbleSortButton");
 const SELECTIONSORTBUTTON = document.getElementById("selectionSortButton");
+const SHELLSORTBUTTON = document.getElementById("shellSortButton");
 const USERNUMBER = document.getElementById("userNumber");
 const USERNUMBERS = document.getElementById("userNumbers");
 const ORDEREDNUMBERS = document.getElementById("orderedNumbers");
@@ -56,15 +57,39 @@ const SORTS = {
         ACTIONS.start();
         let length = array.length;
         for (let i = 0; i < length - 1; i++) {
-            var min = i;
+            let min = i;
             for (let j = i + 1; j < length; j++) {
                 if (array[j] < array[min]) {
                     min = j;
-                } else {}
+                }
             }
             if (min !== i) {
                 this.swap(array, i, min);
-            } else {}
+            }
+        }
+        ACTIONS.end();
+        console.log(`${ACTIONS.elapsed()} milliseconds passed`);
+        return array;
+    },
+
+    shellSorter : function(array) {
+        ACTIONS.start();
+        let increment = array.length / 2;
+        while (increment > 0) {
+            for (let i = increment; i < array.length; i++) {
+                let j = i;
+                let temp = array[i];
+                while (j >= increment && array[j - increment] > temp) {
+                    array[j] = array[j - increment];
+                    j = j - increment;
+                }
+                array[j] = temp;
+            }
+            if (increment == 2) {
+                increment = 1;
+            } else {
+                increment = parseInt(increment*5 / 11);
+            }
         }
         ACTIONS.end();
         console.log(`${ACTIONS.elapsed()} milliseconds passed`);
@@ -82,6 +107,10 @@ BUBBLESORTBUTTON.onclick =  function(){
 
 SELECTIONSORTBUTTON.onclick =  function(){
     ORDEREDNUMBERS.innerHTML = SORTS.selectionSorter(userArray);
+};
+
+SHELLSORTBUTTON.onclick =  function(){
+    ORDEREDNUMBERS.innerHTML = SORTS.shellSorter(userArray);
 };
 
 function randomNumbers(number) {
