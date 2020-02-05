@@ -1,13 +1,15 @@
 const QUESTION = document.getElementById("questionInput");
 const HEADER = document.getElementById("header");
 const BUTTON = document.getElementById("button");
-const BUBBLESORTBUTTON = document.getElementById("bubbleSortButton");
-const SELECTIONSORTBUTTON = document.getElementById("selectionSortButton");
-const SHELLSORTBUTTON = document.getElementById("shellSortButton");
 const USERNUMBER = document.getElementById("userNumber");
 const USERNUMBERS = document.getElementById("userNumbers");
 const ORDEREDNUMBERS = document.getElementById("orderedNumbers");
+const BUBBLESORTBUTTON = document.getElementById("bubbleSortButton");
+const SELECTIONSORTBUTTON = document.getElementById("selectionSortButton");
+const SHELLSORTBUTTON = document.getElementById("shellSortButton");
+const MERGESORTBUTTON = document.getElementById("mergeSortButton");
 const SECTION5INFO = document.getElementById("section5info");
+
 
 let userArray = [];
 let startTime, endTime;
@@ -29,6 +31,11 @@ const ACTIONS = {
         return endTime - startTime;
     },
 
+    resetTimer : function() {
+        startTime = undefined;
+        endTime = undefined;
+    },
+
     randomizer : function() {
         return Math.floor(Math.random() * 100);
     }
@@ -40,6 +47,7 @@ const SORTS = {
     },
 
     bubbleSorter : function(array) {
+        if(array.length <= 1) return array;
         ACTIONS.start();
             for (let i = 0 ; i < array.length; i++) {
                 for (let j = 0; j < array.length; j++) {
@@ -50,10 +58,12 @@ const SORTS = {
         }
         ACTIONS.end();
         console.log(`${ACTIONS.elapsed()} milliseconds passed`);
+        ACTIONS.resetTimer();
         return array;
     },
 
     selectionSorter : function(array) {
+        if(array.length <= 1) return array;
         ACTIONS.start();
         let length = array.length;
         for (let i = 0; i < length - 1; i++) {
@@ -69,10 +79,12 @@ const SORTS = {
         }
         ACTIONS.end();
         console.log(`${ACTIONS.elapsed()} milliseconds passed`);
+        ACTIONS.resetTimer();
         return array;
     },
 
     shellSorter : function(array) {
+        if(array.length <= 1) return array;
         ACTIONS.start();
         let increment = array.length / 2;
         while (increment > 0) {
@@ -93,13 +105,56 @@ const SORTS = {
         }
         ACTIONS.end();
         console.log(`${ACTIONS.elapsed()} milliseconds passed`);
+        ACTIONS.resetTimer();
         return array;
+    },
+
+    arrayLength : 0,
+
+    mergeSorter : function(array) {
+        if(array.length <= 1) return array;
+        if(startTime === undefined) {
+            ACTIONS.start();
+            console.log(array.length);
+            this.arrayLength = array.length;
+        }
+        const middle = array.length / 2 ;
+        const left = array.slice(0, middle);
+        const right = array.slice(middle, array.length);
+        return this.merge(this.mergeSorter(left), this.mergeSorter(right));
+    },
+    
+    merge : function(left, right) {
+        let result = [];
+
+        while(left.length || right.length) {
+            if(left.length && right.length) {
+                if(left[0] < right[0]) {
+                    result.push(left.shift());
+                } else {
+                    result.push(right.shift());
+                }
+            } else if(left.length) {
+                result.push(left.shift());
+            } else {
+                result.push(right.shift());
+            }
+        }
+
+        if(result.length == this.arrayLength) {
+            ACTIONS.end();
+            console.log(`${ACTIONS.elapsed()} milliseconds passed`);
+            ACTIONS.resetTimer();
+            this.arrayLength = 0;
+        }
+        
+        return result;
     }
 };
 
 BUTTON.onclick =  function() {
     numberLogger(userArray);
-}
+};
 
 BUBBLESORTBUTTON.onclick =  function(){
     ORDEREDNUMBERS.innerHTML = SORTS.bubbleSorter(userArray);
@@ -111,6 +166,10 @@ SELECTIONSORTBUTTON.onclick =  function(){
 
 SHELLSORTBUTTON.onclick =  function(){
     ORDEREDNUMBERS.innerHTML = SORTS.shellSorter(userArray);
+};
+
+MERGESORTBUTTON.onclick = function(){
+    ORDEREDNUMBERS.innerHTML = SORTS.mergeSorter(userArray);
 };
 
 function randomNumbers(number) {
