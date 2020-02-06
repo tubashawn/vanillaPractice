@@ -38,7 +38,7 @@ const ACTIONS = {
     },
 
     randomizer : function() {
-        return Math.floor(Math.random() * 100);
+        return Math.floor((Math.random() * 100) + 1);
     }
 };
 
@@ -162,14 +162,28 @@ const SORTS = {
         return result;
     },
 
+    count : 0,
+    quickSortArray : [],
+
     quickSorter : function(array, start, end) {
+        console.log(this.count);
+        console.log(this.quickSortArray);
+        
+        if(startTime === undefined) {
+            ACTIONS.startTimer();
+        }
+        this.count++;
         if(start < end) {
             let pivot = this.partition(array, start, end);
+            if(pivot == 0) {
+                console.log("The end");
+                console.log(this.count);
+            }
             this.quickSorter(array, start, pivot - 1);
             this.quickSorter(array, pivot + 1, end);
         } 
     },
-
+    
     partition : function(array, start, end) { 
         let pivot = end;
         let i = start - 1;
@@ -186,11 +200,15 @@ const SORTS = {
         }
 
         this.swap(array, i + 1, pivot);
-        return i + 1;
+        
+        // if (start == 0) {
+        //     console.log("The end");
+        // }
+
+        this.quickSortArray = array;
+        return i++;
     }
 
-    //   quickSort(arr, 0, arr.length - 1)
-    //   console.log(arr)
 };
 
 BUTTON.onclick =  function() {
