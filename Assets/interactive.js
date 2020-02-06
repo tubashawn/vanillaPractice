@@ -8,6 +8,7 @@ const BUBBLESORTBUTTON = document.getElementById("bubbleSortButton");
 const SELECTIONSORTBUTTON = document.getElementById("selectionSortButton");
 const SHELLSORTBUTTON = document.getElementById("shellSortButton");
 const MERGESORTBUTTON = document.getElementById("mergeSortButton");
+const QUICKSORTBUTTON = document.getElementById("quickSortButton");
 const SECTION5INFO = document.getElementById("section5info");
 
 
@@ -209,6 +210,10 @@ SHELLSORTBUTTON.onclick =  function(){
 };
 
 MERGESORTBUTTON.onclick = function(){
+    ORDEREDNUMBERS.innerHTML = SORTS.mergeSorter(userArray);
+};
+
+QUICKSORTBUTTON.onclick = function(){
     ORDEREDNUMBERS.innerHTML = SORTS.quickSorter(userArray, 0, userArray.length - 1);
     console.log(userArray);
 };
