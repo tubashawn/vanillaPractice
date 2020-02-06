@@ -19,15 +19,15 @@ const ACTIONS = {
         console.log("Random number = " + randomizer());
     },
 
-    start : function() {
+    startTimer : function() {
         startTime = new Date();
     },
 
-    end : function() {
+    endTimer : function() {
         endTime = new Date();
     },
 
-    elapsed : function() {
+    elapsedTime : function() {
         return endTime - startTime;
     },
 
@@ -48,7 +48,7 @@ const SORTS = {
 
     bubbleSorter : function(array) {
         if(array.length <= 1) return array;
-        ACTIONS.start();
+        ACTIONS.startTimer();
             for (let i = 0 ; i < array.length; i++) {
                 for (let j = 0; j < array.length; j++) {
                     if (array[j] > array[j+1]) {
@@ -56,16 +56,19 @@ const SORTS = {
                 }
             }
         }
-        ACTIONS.end();
-        console.log(`${ACTIONS.elapsed()} milliseconds passed`);
+        ACTIONS.endTimer();
+        console.log(`${ACTIONS.elapsedTime()} milliseconds passed`);
         ACTIONS.resetTimer();
         return array;
     },
 
     selectionSorter : function(array) {
         if(array.length <= 1) return array;
-        ACTIONS.start();
+
+        ACTIONS.startTimer();
+        
         let length = array.length;
+        
         for (let i = 0; i < length - 1; i++) {
             let min = i;
             for (let j = i + 1; j < length; j++) {
@@ -77,20 +80,25 @@ const SORTS = {
                 this.swap(array, i, min);
             }
         }
-        ACTIONS.end();
-        console.log(`${ACTIONS.elapsed()} milliseconds passed`);
+
+        ACTIONS.endTimer();
+        console.log(`${ACTIONS.elapsedTime()} milliseconds passed`);
         ACTIONS.resetTimer();
         return array;
     },
 
     shellSorter : function(array) {
         if(array.length <= 1) return array;
-        ACTIONS.start();
+
+        ACTIONS.startTimer();
+        
         let increment = array.length / 2;
+        
         while (increment > 0) {
             for (let i = increment; i < array.length; i++) {
                 let j = i;
                 let temp = array[i];
+                
                 while (j >= increment && array[j - increment] > temp) {
                     array[j] = array[j - increment];
                     j = j - increment;
@@ -103,8 +111,9 @@ const SORTS = {
                 increment = parseInt(increment*5 / 11);
             }
         }
-        ACTIONS.end();
-        console.log(`${ACTIONS.elapsed()} milliseconds passed`);
+
+        ACTIONS.endTimer();
+        console.log(`${ACTIONS.elapsedTime()} milliseconds passed`);
         ACTIONS.resetTimer();
         return array;
     },
@@ -113,11 +122,12 @@ const SORTS = {
 
     mergeSorter : function(array) {
         if(array.length <= 1) return array;
+
         if(startTime === undefined) {
-            ACTIONS.start();
-            console.log(array.length);
+            ACTIONS.startTimer();
             this.arrayLength = array.length;
         }
+
         const middle = array.length / 2 ;
         const left = array.slice(0, middle);
         const right = array.slice(middle, array.length);
@@ -142,14 +152,44 @@ const SORTS = {
         }
 
         if(result.length == this.arrayLength) {
-            ACTIONS.end();
-            console.log(`${ACTIONS.elapsed()} milliseconds passed`);
+            ACTIONS.endTimer();
+            console.log(`${ACTIONS.elapsedTime()} milliseconds passed`);
             ACTIONS.resetTimer();
             this.arrayLength = 0;
         }
-        
+
         return result;
+    },
+
+    quickSorter : function(array, start, end) {
+        if(start < end) {
+            let pivot = this.partition(array, start, end);
+            this.quickSorter(array, start, pivot - 1);
+            this.quickSorter(array, pivot + 1, end);
+        } 
+    },
+
+    partition : function(array, start, end) { 
+        let pivot = end;
+        let i = start - 1;
+        let j = start;
+
+        while (j < pivot) {
+            if (array[j] > array[pivot]) {
+                j++;
+            } else {
+                i++;
+                this.swap(array, j, i);
+                j++;
+            }
+        }
+
+        this.swap(array, i + 1, pivot);
+        return i + 1;
     }
+
+    //   quickSort(arr, 0, arr.length - 1)
+    //   console.log(arr)
 };
 
 BUTTON.onclick =  function() {
@@ -169,20 +209,24 @@ SHELLSORTBUTTON.onclick =  function(){
 };
 
 MERGESORTBUTTON.onclick = function(){
-    ORDEREDNUMBERS.innerHTML = SORTS.mergeSorter(userArray);
+    ORDEREDNUMBERS.innerHTML = SORTS.quickSorter(userArray, 0, userArray.length - 1);
+    console.log(userArray);
 };
 
 function randomNumbers(number) {
     let numbers = [];
+
     for (let i = 0; i < number; i++) {
         let temp = ACTIONS.randomizer();
         numbers.push(temp);
     }
+
     userArray = numbers;
 }
 
 function numberLogger() {
     let numberValue = document.getElementById("questionInput").value;
+
     randomNumbers(numberValue);
     
     USERNUMBER.innerHTML = `You entered ${numberValue}`;
