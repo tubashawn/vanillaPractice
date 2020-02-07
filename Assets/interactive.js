@@ -166,19 +166,9 @@ const SORTS = {
     quickSortArray : [],
 
     quickSorter : function(array, start, end) {
-        console.log(this.count);
-        console.log(this.quickSortArray);
-        
-        if(startTime === undefined) {
-            ACTIONS.startTimer();
-        }
         this.count++;
         if(start < end) {
             let pivot = this.partition(array, start, end);
-            if(pivot == 0) {
-                console.log("The end");
-                console.log(this.count);
-            }
             this.quickSorter(array, start, pivot - 1);
             this.quickSorter(array, pivot + 1, end);
         } 
@@ -200,10 +190,6 @@ const SORTS = {
         }
 
         this.swap(array, i + 1, pivot);
-        
-        // if (start == 0) {
-        //     console.log("The end");
-        // }
 
         this.quickSortArray = array;
         return i++;
@@ -232,7 +218,11 @@ MERGESORTBUTTON.onclick = function(){
 };
 
 QUICKSORTBUTTON.onclick = function(){
+    ACTIONS.startTimer();
     ORDEREDNUMBERS.innerHTML = SORTS.quickSorter(userArray, 0, userArray.length - 1);
+    ACTIONS.endTimer();
+    console.log(`${ACTIONS.elapsedTime()} milliseconds passed`);
+    ACTIONS.resetTimer();
     console.log(userArray);
 };
 
