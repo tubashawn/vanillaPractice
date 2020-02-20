@@ -178,7 +178,7 @@ const SORTS = {
         let pivot = end;
         let i = start - 1;
         let j = start;
-
+        
         while (j < pivot) {
             if (array[j] > array[pivot]) {
                 j++;
@@ -188,10 +188,10 @@ const SORTS = {
                 j++;
             }
         }
+        this.quickSortArray = array;
 
         this.swap(array, i + 1, pivot);
 
-        this.quickSortArray = array;
         return i++;
     }
 
@@ -219,11 +219,19 @@ MERGESORTBUTTON.onclick = function(){
 
 QUICKSORTBUTTON.onclick = function(){
     ACTIONS.startTimer();
-    ORDEREDNUMBERS.innerHTML = SORTS.quickSorter(userArray, 0, userArray.length - 1);
-    ACTIONS.endTimer();
-    console.log(`${ACTIONS.elapsedTime()} milliseconds passed`);
-    ACTIONS.resetTimer();
-    console.log(userArray);
+    
+    async function callQuickSorter() {
+            SORTS.quickSorter(userArray, 0, userArray.length - 1);
+    }
+
+    callQuickSorter().then(function() {
+        console.log("Inside waiting function");
+        ACTIONS.endTimer();
+        console.log(`${ACTIONS.elapsedTime()} milliseconds passed`);
+        console.log(userArray);
+        ACTIONS.resetTimer();
+        ORDEREDNUMBERS.innerHTML = SORTS.quickSortArray;
+    });
 };
 
 function randomNumbers(number) {
