@@ -198,18 +198,19 @@ const SORTS = {
 };
 
 BUTTON.onclick =  function() {
+    event.preventDefault();
     numberLogger(userArray);
 };
 
-BUBBLESORTBUTTON.onclick =  function(){
+BUBBLESORTBUTTON.onclick = function(){
     ORDEREDNUMBERS.innerHTML = SORTS.bubbleSorter(userArray);
 };
 
-SELECTIONSORTBUTTON.onclick =  function(){
+SELECTIONSORTBUTTON.onclick = function(){
     ORDEREDNUMBERS.innerHTML = SORTS.selectionSorter(userArray);
 };
 
-SHELLSORTBUTTON.onclick =  function(){
+SHELLSORTBUTTON.onclick = function(){
     ORDEREDNUMBERS.innerHTML = SORTS.shellSorter(userArray);
 };
 

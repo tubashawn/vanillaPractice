@@ -2,45 +2,52 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="Assets/style.css" type="text/css">
     <title>Sorting practice</title>
 </head>
 <body>
-    <head>
-        <h1 id="header">The top of the page</h1>
-    </head>
-    <section id="section1">
-        <h2 id="section1info">This is the first section, it has a question.</h2>
-        <div id="questionActual">How many numbers do you want?</div>
-        <input type="number" name="question" id="questionInput">
-    </section>
-    <section id="section2">
-        <h2 id="section2info">This is the second section, it has a button.</h2>
-        <div id="button">
-            <button id="questionButton">Click here!</button>
-        </div>
-    </section>
-    <section id="section3">
-        <h2 id="section3info">This is the third section, it will display the number you enter.</h2>
-        <div id="userNumber"></div>
-    </section>
-    <section id="section4">
-        <h2 id="section4info">This is the fourth section, it will display the amount of numbers you enter.</h2>
-        <div id="userNumbers"></div>
-    </section>
-    <section id="section5">
-        <h2 id="section5info">This is the fifth section, it will display the amount of numbers you enter in order least to greatest when you click the sort button.</h2>
-        <div id="buttons">
-            <button id="bubbleSortButton">Bubble Sort!</button>
-            <button id="selectionSortButton">Selection Sort!</button>
-            <button id="shellSortButton">Shell Sort!</button>
-            <button id="mergeSortButton">Merge Sort!</button>
-            <button id="quickSortButton">Quick Sort!</button>
-        </div>
-        <div id="orderedNumbers"></div>
-    </section>
+    <nav class="navbar sticky-top navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">Vanilla Javascript Practice - now with Bootstrap!</a>
+    </nav>
+
+    <div class="container-fluid">
+        <head>
+            <h1 id="header">Sorting algorithms</h1>
+        </head>
+        <section id="section1">
+            <h3 id="section1info">First, answer a simple question.</h3>
+            <form id="numberQuestion">
+                <div id="questionActual">How many numbers do you want?</div>
+                <input type="number" name="question" id="questionInput">
+                <button id="questionButton" class="btn btn-dark">Click here!</button>
+            </form>
+        </section>
+        <section id="section3">
+            <h2 id="section3info">This is the third section, it will display the number you enter.</h2>
+            <div id="userNumber"></div>
+        </section>
+        <section id="section4">
+            <h2 id="section4info">This is the fourth section, it will display the amount of numbers you enter.</h2>
+            <div id="userNumbers"></div>
+        </section>
+        <section id="section5">
+            <h2 id="section5info">This is the fifth section, it will display the amount of numbers you enter in order least to greatest when you click the sort button.</h2>
+            <div id="buttons">
+                <button id="bubbleSortButton">Bubble Sort!</button>
+                <button id="selectionSortButton">Selection Sort!</button>
+                <button id="shellSortButton">Shell Sort!</button>
+                <button id="mergeSortButton">Merge Sort!</button>
+                <button id="quickSortButton">Quick Sort!</button>
+            </div>
+            <div id="orderedNumbers"></div>
+        </section>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 </body>
 <script src="Assets/interactive.js"></script>
 </html>
