@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <link rel="stylesheet" href="Assets/style.css" type="text/css">
+    <link rel="stylesheet" type="text/css" href="./Assets/style.css" >
     <title>Sorting practice</title>
 </head>
 <body>
@@ -17,21 +17,20 @@
         <head>
             <h1 id="header">Sorting algorithms</h1>
         </head>
-        <section id="section1">
-            <h3 id="section1info">First, answer a simple question.</h3>
-            <form id="numberQuestion">
+        <section id="section1" class="row">
+            <h3 id="section1info" class="col-sm">First, answer a simple question.</h3>
+            <form id="numberQuestion" class="col-sm">
                 <div id="questionActual">How many numbers do you want?</div>
-                <input type="number" name="question" id="questionInput">
-                <button id="questionButton" class="btn btn-dark">Click here!</button>
+                <div id="inputDiv">
+                    <input type="number" name="question" id="questionInput">
+                    <button id="questionButton" class="btn btn-dark">Click here!</button>
+                </div>
             </form>
+            <div id="displayUserNumber" class="col-sm"></div>
         </section>
-        <section id="section3">
-            <h2 id="section3info">This is the third section, it will display the number you enter.</h2>
-            <div id="userNumber"></div>
-        </section>
-        <section id="section4">
-            <h2 id="section4info">This is the fourth section, it will display the amount of numbers you enter.</h2>
-            <div id="userNumbers"></div>
+        <section id="section4" class="row">
+            <h2 id="section4info" class="col-sm-4">Here are your random numbers!</h2>
+            <div id="userNumbers" class="col-sm-8">a;drguvnad;fvounads;kvlans;dlvknas;doivnas;rlkvnas;dvkjlnas;flbknad'lbknads'bknad'lbknas;lbjna;dflbkadn'bla;drguvnad;fvounads;kvlans;dlvknas;doivnas;rlkvnas;dvkjlnas;flbknad'lbknads'bknad'lbknas;lbjna;dflbkadn'bla;drguvnad;fvounads;kvlans;dlvknas;doivnas;rlkvnas;dvkjlnas;flbknad'lbknads'bknad'lbknas;lbjna;dflbkadn'bla;drguvnad;fvounads;kvlans;dlvknas;doivnas;rlkvnas;dvkjlnas;flbknad'lbknads'bknad'lbknas;lbjna;dflbkadn'bl</div>
         </section>
         <section id="section5">
             <h2 id="section5info">This is the fifth section, it will display the amount of numbers you enter in order least to greatest when you click the sort button.</h2>

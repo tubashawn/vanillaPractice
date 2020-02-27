@@ -1,7 +1,7 @@
 const QUESTION = document.getElementById("questionInput");
 const HEADER = document.getElementById("header");
-const BUTTON = document.getElementById("button");
-const USERNUMBER = document.getElementById("userNumber");
+const QUESTIONBUTTON = document.getElementById("questionButton");
+const DISPLAYUSERNUMBER = document.getElementById("displayUserNumber");
 const USERNUMBERS = document.getElementById("userNumbers");
 const ORDEREDNUMBERS = document.getElementById("orderedNumbers");
 const BUBBLESORTBUTTON = document.getElementById("bubbleSortButton");
@@ -197,7 +197,8 @@ const SORTS = {
 
 };
 
-BUTTON.onclick =  function() {
+
+QUESTIONBUTTON.onclick =  function() {
     event.preventDefault();
     numberLogger(userArray);
 };
@@ -251,7 +252,7 @@ function numberLogger() {
 
     randomNumbers(numberValue);
     
-    USERNUMBER.innerHTML = `You entered ${numberValue}`;
+    DISPLAYUSERNUMBER.innerHTML = `You entered ${numberValue}`;
     USERNUMBERS.innerHTML = userArray;
     
 }

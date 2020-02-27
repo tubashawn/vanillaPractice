@@ -5,3 +5,12 @@
 #numberQuestion {
     display: inline;
 }
+
+#userNumbers {
+    overflow-wrap: break-word;
+}
+
+body {
+    background-color: rgb(100, 82, 100);
+    color: rgba(0, 0, 0, 0.9);
+}
