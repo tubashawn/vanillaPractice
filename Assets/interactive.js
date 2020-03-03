@@ -39,6 +39,13 @@ const ACTIONS = {
 
     randomizer : function() {
         return Math.floor((Math.random() * 100) + 1);
+    },
+
+    truncateString : function(str, num) {
+        if (str.length <= num) {
+            return str;
+        }
+        return str.slice(0, num) + '...';
     }
 };
 
@@ -253,9 +260,10 @@ function numberLogger() {
     randomNumbers(numberValue);
     
     DISPLAYUSERNUMBER.innerHTML = `You entered ${numberValue}`;
-    USERNUMBERS.innerHTML = userArray;
+    USERNUMBERS.innerHTML = ACTIONS.truncateString(userArray.join(", "), 1000);
     
 }
+
 
 
 
